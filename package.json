@@ -1,0 +1,37 @@
+{
+  "name": "relationship-health-self-assessment",
+  "version": "1.0.0",
+  "description": "Evidence-based, safety-first relationship-health self-assessment Claude skill (Gottman, Four Horsemen, attachment, Investment Model, ACR). Mutual use only; refuses one-sided partner profiling/surveillance.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "claude-skill",
+    "relationship-health",
+    "gottman",
+    "four-horsemen",
+    "attachment",
+    "investment-model",
+    "active-constructive-responding",
+    "couples",
+    "self-reflection"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "seed-references": "tsx scripts/setup/seed-references.ts",
+    "validate-config": "tsx scripts/setup/validate-config.ts",
+    "audit-safety": "tsx scripts/maintenance/audit-safety.ts",
+    "refresh-cache": "tsx scripts/maintenance/refresh-cache.ts",
+    "simulate-router": "tsx scripts/utils/simulate-router.ts",
+    "run-evals": "tsx scripts/utils/run-evals.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx tests/run-tests.ts",
+    "llm-dry-run": "tsx scripts/utils/llm-dry-run.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}

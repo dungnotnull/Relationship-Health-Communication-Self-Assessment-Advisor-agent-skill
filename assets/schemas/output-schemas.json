@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Relationship Health Skill — Tool Output Schemas",
+  "description": "Output JSON schemas for every tool in config/tools/registry.ts.",
+  "tools": {
+    "surveillance_detection": {
+      "type": "object",
+      "properties": {
+        "detected": { "type": "boolean" },
+        "severity": { "type": "string", "enum": ["hard", "soft", "none"] },
+        "matched_phrases": { "type": "array", "items": { "type": "string" } },
+        "mutual_cues_present": { "type": "boolean" },
+        "refusal_recommended": { "type": "boolean" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "required": ["detected", "severity", "refusal_recommended"]
+    },
+    "crisis_detection": {
+      "type": "object",
+      "properties": {
+        "detected": { "type": "boolean" },
+        "matched": { "type": "array", "items": { "type": "string" } },
+        "severity": { "type": "string", "enum": ["severe", "moderate", "none"] }
+      },
+      "required": ["detected", "severity"]
+    },
+    "assessment_score": {
+      "type": "object",
+      "properties": {
+        "assessment_id": { "type": "string" },
+        "raw_score": { "type": "number" },
+        "normalized_score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "band_label": { "type": "string" },
+        "interpretation": { "type": "string" },
+        "suggested_action": { "type": "string" },
+        "domain_scores": { "type": "object" },
+        "referral_recommended": { "type": "boolean" }
+      },
+      "required": ["assessment_id", "normalized_score", "band_label", "referral_recommended"]
+    },
+    "communication_exercise": {
+      "type": "object",
+      "properties": {
+        "exercise_name": { "type": "string" },
+        "steps": { "type": "array", "items": { "type": "string" } },
+        "duration_minutes": { "type": "number" },
+        "tips": { "type": "array", "items": { "type": "string" } },
+        "framework": { "type": "string" }
+      },
+      "required": ["exercise_name", "steps", "framework"]
+    },
+    "citation_lookup": {
+      "type": "object",
+      "properties": {
+        "citations": { "type": "array", "items": { "type": "string" } },
+        "count": { "type": "number", "minimum": 0 }
+      },
+      "required": ["citations", "count"]
+    },
+    "progress_check": {
+      "type": "object",
+      "properties": {
+        "reliable_change": { "type": "boolean" },
+        "clinically_significant_change": { "type": "boolean" },
+        "delta": { "type": "number" }
+      },
+      "required": ["reliable_change", "delta"]
+    }
+  }
+}

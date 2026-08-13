@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Generated artifacts
+cache/
+logs/
+
+# TypeScript build output
+dist/
+*.js
+*.d.ts
+*.js.map
+!assets/schemas/*.json
+!evals/*.json
+!package.json
+!tsconfig.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

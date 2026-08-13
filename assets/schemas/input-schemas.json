@@ -1,0 +1,64 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Relationship Health Skill — Tool Input Schemas",
+  "description": "Input JSON schemas for every tool in config/tools/registry.ts. Authoritative for programmatic callers; the runtime also validates against the in-file JSONSchema copies.",
+  "tools": {
+    "surveillance_detection": {
+      "type": "object",
+      "properties": {
+        "text": { "type": "string", "description": "User message to evaluate for one-sided profiling intent." },
+        "sensitivity": { "type": "string", "enum": ["strict", "moderate", "permissive"] }
+      },
+      "required": ["text"],
+      "additionalProperties": false
+    },
+    "crisis_detection": {
+      "type": "object",
+      "properties": { "text": { "type": "string" } },
+      "required": ["text"],
+      "additionalProperties": false
+    },
+    "assessment_score": {
+      "type": "object",
+      "properties": {
+        "assessment_id": {
+          "type": "string",
+          "enum": ["sound-relationship-house-check", "four-horsemen-self-check", "commitment-investment-reflection", "acr-capitalization-check"]
+        },
+        "responses": { "type": "object", "additionalProperties": { "type": "number", "minimum": 1, "maximum": 5 } }
+      },
+      "required": ["assessment_id", "responses"],
+      "additionalProperties": false
+    },
+    "communication_exercise": {
+      "type": "object",
+      "properties": {
+        "exercise_type": {
+          "type": "string",
+          "enum": ["speaker-listener", "love-maps", "appreciation-ritual", "acr-practice", "gentle-startup", "repair-attempt", "shared-meaning", "investment-inventory", "accommodation-practice"]
+        },
+        "duration_minutes": { "type": "number", "minimum": 1 }
+      },
+      "required": ["exercise_type"],
+      "additionalProperties": false
+    },
+    "citation_lookup": {
+      "type": "object",
+      "properties": {
+        "technique": { "type": "string" },
+        "framework": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "progress_check": {
+      "type": "object",
+      "properties": {
+        "assessment_id": { "type": "string" },
+        "score_a": { "type": "number" },
+        "score_b": { "type": "number" }
+      },
+      "required": ["assessment_id", "score_a", "score_b"],
+      "additionalProperties": false
+    }
+  }
+}
